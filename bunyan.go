@@ -39,16 +39,17 @@ func Ginbunyan(logger *bunyan.Logger) gin.HandlerFunc {
 				logger.Error(e)
 			}
 		} else {
-			le := logEntry{
-				status:    c.Writer.Status(),
-				method:    c.Request.Method,
-				path:      path,
-				query:     query,
-				ip:        c.ClientIP(),
-				userAgent: c.Request.UserAgent(),
-				time:      end.Format(time.RFC3339),
-				latency:   latency,
-			}
+			le := make(map[string]interface{})
+
+			le["status"] = c.Writer.Status()
+			le["method"] = c.Request.Method
+			le["path"] = path
+			le["query"] = query
+			le["ip"] = c.ClientIP()
+			le["userAgent"] = c.Request.UserAgent()
+			le["time"] = end.Format(time.RFC3339)
+			le["latency"] = latency
+
 			logger.Info(le)
 		}
 	}
