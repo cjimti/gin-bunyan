@@ -35,7 +35,6 @@ if err != nil {
 
 // gin config
 gin.SetMode(gin.ReleaseMode)
-gin.DisableConsoleColor()
 
 // discard default logger
 gin.DefaultWriter = ioutil.Discard
