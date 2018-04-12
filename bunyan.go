@@ -9,18 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// logEntry represents a log line
-type logEntry struct {
-	status    int
-	method    string
-	path      string
-	query     string
-	ip        string
-	userAgent string
-	time      string
-	latency   time.Duration
-}
-
 // Ginbunyan returns a gin.HandlerFunc (middleware) that logs requests using bhoriuchi/go-bunyan.
 func Ginbunyan(logger *bunyan.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
